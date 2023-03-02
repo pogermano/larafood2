@@ -291,7 +291,7 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
+/*         [
             'type'         => 'navbar-search',
             'text'         => 'search',
             'topnav_right' => true,
@@ -305,13 +305,12 @@ return [
         [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
-        ],
+        ], */
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
+            'text' => 'Planos',
+            'url'  => 'admin/plans',
+        ] ,
+       /* [
             'text'        => 'pages',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',
@@ -382,7 +381,7 @@ return [
             'text'       => 'information',
             'icon_color' => 'cyan',
             'url'        => '#',
-        ],
+        ], */
     ],
 
     /*
