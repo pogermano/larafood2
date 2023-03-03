@@ -55,15 +55,44 @@ class PlanController extends Controller
 
         return redirect()->route('plans.index');
     }
+    public function edit($url)
+    {
+        $plan = Plan::where('url',$url)->first();
+      //  dd($plan);
+        if (!$plan)
+            return redirect()->back();
+
+        return view('admin.pages.plans.edit', ['plan' => $plan]);
+    }
+
+    public function update(Request $request,$url)
+    {
+        $plan = Plan::where('url',$url)->first();
+      //  dd($plan);
+        if (!$plan)
+            return redirect()->back();
+       $plan->update( $request->all());
+       // dd($request->all());
+
+
+       return redirect()->route('plans.index');
+    }
 
     public function store(Request $request)
     {
-        $data = $request->all();
-        $data['url'] = Str::kebab($request->name);
-        //  dd($data);
+         //  dd($data);
         // $this->repository->create($data);
-        $createPlan = Plan::create($data);
+        $createPlan = Plan::create($request->all());
         //dd($createPlan);
         return redirect()->route('plans.index');
+    }
+
+
+    public function search(Request $request)
+    {
+        $filters= $request->except('_token') ;
+        $plans = Plan::search($request->filter);
+
+        return view('admin.pages.plans.index', ['plans' => $plans, 'filters'=> $filters]);
     }
 }

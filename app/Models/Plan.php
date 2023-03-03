@@ -12,4 +12,12 @@ class Plan extends Model
     protected $fillable = [
         'name', 'price', 'url', 'description'
     ];
+
+    public static function search($filter = null)
+    {
+        $results = Plan::where('name', 'LIKE', "%{$filter}%")
+                        ->orWhere('description', 'LIKE', "%{$filter}%")
+                        ->paginate(1);
+        return $results;
+    }
 }
