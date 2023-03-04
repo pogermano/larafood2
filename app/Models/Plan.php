@@ -13,6 +13,11 @@ class Plan extends Model
         'name', 'price', 'url', 'description'
     ];
 
+    public function details()
+    {
+        return $this->hasMany(DetailPlan::class);
+    }
+
     public static function search($filter = null)
     {
         $results = Plan::where('name', 'LIKE', "%{$filter}%")
