@@ -29,8 +29,8 @@
             <table class="table table-condensed">
                 <thead>
                     <tr>
-                        <th>Nome</th>
-                        <th>Preço</th>
+                        <th style="width: 200px;">Nome</th>
+                        <th style="width: 10px;">Preço</th>
                         <th style="width: 50px;">Ações</th>
                     </tr>
                 </thead>
@@ -39,9 +39,7 @@
                     <tr>
                         <td>{{ $plan->name }}</td>
                         <td>R$ {{ number_format($plan->price,2,',','.') }}</td>
-                        <td style="width: 10px;"><a href="{{ route('details.plan.index', $plan->url) }}" class="btn btn-primary">Detalhes</a></td>
-                        <td style="width: 10px;"><a href="{{ route('plans.edit', $plan->url) }}" class="btn btn-info">Edit</a></td>
-                        <td style="width: 10px;"><a href="{{ route('plans.show', $plan->url) }}" class="btn btn-warning">Ver</a></td>
+                        <td style="width: 50px;"><a href="{{ route('details.plan.index', $plan->url) }}" class="btn btn-primary">Detalhes</a> <a href="{{ route('plans.edit', $plan->url) }}" class="btn btn-info">Edit</a> <a href="{{ route('plans.show', $plan->url) }}" class="btn btn-warning">Ver</a></td>
 
                     </tr>
                     @endforeach

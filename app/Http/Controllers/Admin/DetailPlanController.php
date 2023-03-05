@@ -28,9 +28,40 @@ class DetailPlanController extends Controller
         'details'=> $details,
      ]);
     }
+  public function show($urlPlan, $IdDetail)
+    {
+        $plan= $this->plan->where('url', $urlPlan)->first();
+        $details = $this->repository->find( $IdDetail);
+       // dd($plan->details()->get());
+      if ( !$plan || !$details){
+        return redirect()->back();
+     };
+
+
+     return view('admin.pages.plans.details.show', [
+        'plan'=>$plan,
+        'details'=> $details,
+     ]);
+    }
+  public function destroy($urlPlan, $IdDetail)
+    {
+        $plan= $this->plan->where('url', $urlPlan)->first();
+        $detail = $this->repository->find( $IdDetail);
+
+      if ( !$plan || !$detail){
+
+        return redirect()->back();
+     };
+
+     $detail->delete();
+
+   return redirect()->route('details.plan.index', $plan->url)
+                    ->with('message', 'Registro deletado com sucesso!');
+    }
 
     public function create($urlPlan)
     {
+       // dd($urlPlan);
         if ( !$plan= $this->plan->where('url', $urlPlan)->first()){
             return redirect()->back();
          };
@@ -87,6 +118,16 @@ class DetailPlanController extends Controller
 
 
     }
+
+
+
+
+
+
+
+
+
+
 
 
 }

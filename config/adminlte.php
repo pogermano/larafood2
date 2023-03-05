@@ -309,7 +309,12 @@ return [
         [
             'text' => 'Planos',
             'url'  => 'admin/plans',
-            'icon'    => 'fas fa-fw fa-share',
+            'icon'    => 'fas  fa-list-alt',
+        ] ,
+        [
+            'text' => 'Perfis',
+            'url'  => 'admin/profiles',
+            'icon'    => 'fas fa-address-book',
         ] ,
        /* [
             'text'        => 'pages',

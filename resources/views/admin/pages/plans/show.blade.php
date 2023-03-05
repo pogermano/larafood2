@@ -25,6 +25,7 @@
         <strong>Descrição:</strong> {{ $plan->description }}
     </li>
 </ul>
+@include('admin.includes.alerts')
  <form action="{{ route('plans.delete', $plan->id) }}" method="POST">
     @csrf
     @method('DELETE')
