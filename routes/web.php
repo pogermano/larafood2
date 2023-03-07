@@ -39,18 +39,23 @@ Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->group(function 
      * Routes Profiles
      */
 
-     Route::any('profiles/search', 'ACL\ProfileController@search')->name('profiles.search');
-     Route::resource('profiles','ACL\ProfileController');
-    // Route::get('plans/create', 'PlanController@create')->name('plans.create');
-    // Route::any('plans/search', 'PlanController@search')->name('plans.search');
-    // Route::delete('plans/{id}', 'PlanController@delete')->name('plans.delete');
+    Route::any('profiles/search', 'ACL\ProfileController@search')->name('profiles.search');
+    Route::resource('profiles', 'ACL\ProfileController');
+    /**
+     * Routes Permissions x Profiles
+     */
+    Route::get('profiles/{id}/permission/{idPermission}/detach', 'ACL\PermissionProfileController@detachPermissionProfile')->name('profiles.permission.detach');
+    Route::any('profiles/{id}/permissions/create', 'ACL\PermissionProfileController@permissionsAvailable')->name('profiles.permissions.available');
+    Route::post('profiles/{id}/permissions', 'ACL\PermissionProfileController@attachPermissionsProfile')->name('profiles.permissions.attach');
+    Route::get('profiles/{id}/permissions', 'ACL\PermissionProfileController@permissions')->name('profiles.permissions');
+    Route::get('permission/{id}/profiles', 'ACL\PermissionProfileController@profiles')->name('permission.profiles');
 
-    // Route::post('plans', 'PlanController@store')->name('plans.store');
-    // Route::get('profiles', 'ProfileController@index')->name('profiles.index');
+    /**
+     * Routes Permissions
+     */
 
-    // Route::get('plans/{url}', 'PlanController@show')->name('plans.show');
-    // Route::put('plans/{url}', 'PlanController@update')->name('plans.update');
-    // Route::get('plans/{url}/edit', 'PlanController@edit')->name('plans.edit');
+    Route::any('permissions/search', 'ACL\PermissionController@search')->name('permissions.search');
+    Route::resource('permissions', 'ACL\PermissionController');
 
     /**
      * Route Home dashboard

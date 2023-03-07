@@ -1,14 +1,14 @@
 @extends('adminlte::page')
 
-@section('title', 'Perfis')
+@section('title', "Perfis da Permissão  {$permission->name}")
 
 @section('content_header')
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-        <li class="breadcrumb-item active"><a href="{{ route('profiles.index') }}">Perfis</a></li>
+        <li class="breadcrumb-item active"><a href="{{ route('permissions.index') }}">Permissões</a></li>
     </ol>
     <br>
-    <h1>Perfis  <a href="{{ route('profiles.create') }}" class="btn btn-dark" ><i class="fas fa-plus-square"></i>  ADD</a></h1>
+    <h1>Perfis da Permissão  <b> {{  $permission->name }}</b> </h1>
 
 
 @stop
@@ -18,7 +18,7 @@
     <div class="card">
         <div class="card-header">
             <div class="card-header">
-                <form action="{{ route('profiles.search') }}" method="post" class="form form-inline">
+                <form action="{{ route('profiles.permissions.available', $permission->id) }}" method="post" class="form form-inline">
                     @csrf
                     <input type="text" name="filter" placeholder="Nome" value="{{ $filters['filter']?? '' }}" class="form-control">
                     <button type="submit" class="btn btn-dark">Filtrar</button>
@@ -41,11 +41,10 @@
                     @foreach ($profiles as $profile)
                     <tr>
                         <td style="width: 10px;">{{ $profile->name }}</td>
-                        <td style="width: 10px;">{{ $profile->description }}</td>
+                        <td style="width: 10px;">{{ $profile->description }}</a></td>
                         <td style="width: 10px;">
-                            <a href="{{ route('profiles.edit', $profile->id) }}" class="btn btn-info">Edit</a>
-                            <a href="{{ route('profiles.show', $profile->id) }}" class="btn btn-warning">Ver</a>
-                            <a href="{{ route('profiles.permissions', $profile->id) }}" class="btn btn-warning"><i class="fas fa-lock"></i></a>
+                            <a href="{{ route('profiles.permission.detach',[$profile->id, $permission->id]) }}" class="btn btn-danger">DESVINCULAR</a>
+
                         </td>
 
                     </tr>
